@@ -11,27 +11,29 @@ const Div  = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
 `
 
 
 
 
-export default function Cards({ characters }) {
+export default function Cards({ characters , onClose }) {
   return (
     <Div>
       {characters.map((character) => (
         <Card
-          key={character.id}
+          id={character.id}
           name={character.name}
           species={character.species}
           gender={character.gender}
           image={character.image}
-          onClose={() => window.alert('Cerrando')}
+          onClose={onClose}
         />
       ))}
     </Div>
   );
 }
+
+
+
+

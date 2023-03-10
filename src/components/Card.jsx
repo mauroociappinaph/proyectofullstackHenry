@@ -1,5 +1,6 @@
-import React from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import React from 'react';
 
 
 
@@ -8,14 +9,16 @@ import styled from "styled-components";
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   background-color: #1b1c1d;
   color: #ffffff;
   border-radius: 0.625rem;
   box-shadow: 0px 0px 0.625rem rgba(255, 255, 255, 0.2);
   padding: 0.625rem;
   margin: 0.625rem;
-  width: 15.625rem;
+  width: 14.625rem;
+
   
   &:hover {
     box-shadow: 0px 0px 0.9375rem rgba(255, 255, 255, 0.4);
@@ -25,6 +28,7 @@ const CardContainer = styled.div`
 
 const CardHeader = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column-reverse;
   margin: 0.8rem
   justify-content: center;
@@ -76,25 +80,23 @@ margin-top:  .8rem;
 margin-bottom: .2rem;
 
 `
-
 ;
 
-export default function Card(props) {
-  const { name, species, gender, image, onClose } = props;
-  
 
+export default function Card(props) {
+  const { id, name, species, gender, image, onClose } = props;
+  
   return (
-   
     <CardContainer>
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        
-      </CardHeader>
+      <Link to={`/detail/${id}`}>
+        <CardTitle >{name}</CardTitle>
+      </Link>
       <CardImage src={image} alt={`${name}`} />
       <Parrafo>Species: {species}</Parrafo>
       <Parrafo>Gender: {gender}</Parrafo>
-      <CloseButton onClick={onClose}>X</CloseButton>
+      <CloseButton onClick={() => onClose(id)}>X</CloseButton>
     </CardContainer>
-   
   );
 }
+
+
